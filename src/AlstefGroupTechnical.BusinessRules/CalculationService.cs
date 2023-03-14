@@ -1,7 +1,5 @@
-﻿namespace AlstefGroupTechnical.BusinessRules
+﻿namespace AlstefGroupTechnical.BusinessRules;
+public class CalculationService
 {
-    public class CalculationService
-    {
 
-    }
 }

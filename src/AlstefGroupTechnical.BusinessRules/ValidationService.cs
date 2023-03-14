@@ -1,8 +1,6 @@
-﻿
+﻿namespace AlstefGroupTechnical.BusinessRules;
 
-namespace AlstefGroupTechnical.BusinessRules
+public class ValidationService
 {
-    internal class ValidationService
-    {
-    }
+
 }
