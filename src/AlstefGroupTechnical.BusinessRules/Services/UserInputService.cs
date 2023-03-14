@@ -11,9 +11,9 @@
                 Console.Write("Enter a number: ");
                 string input = Console.ReadLine();
 
-                NumberValidationResult validationResult = ValidationService.ValidateNumber(input);
+                NumberValidationResultType validationResult = ValidationService.ValidateNumber(input);
 
-                if (validationResult != NumberValidationResult.ValidNumber)
+                if (validationResult != NumberValidationResultType.ValidNumber)
                 {
                     Console.WriteLine($"Invalid input. {validationResult}. Please enter a valid number.");
                     continue;

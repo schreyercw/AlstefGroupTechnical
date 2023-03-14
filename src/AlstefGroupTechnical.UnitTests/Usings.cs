@@ -6,3 +6,6 @@ global using System.Text;
 global using System.Threading.Tasks;
 global using AlstefGroupTechnical.BusinessRules.Services;
 global using AlstefGroupTechnical.BusinessRules.Enums;
+global using AlstefGroupTechnical.BusinessRules.Models;
+//Added Packages
+global using Moq;
