@@ -1,6 +1,4 @@
-﻿
-
-namespace AlstefGroupTechnical.BusinessRules.Services
+﻿namespace AlstefGroupTechnical.BusinessRules.Services
 {
     public class UserInputService
     {
