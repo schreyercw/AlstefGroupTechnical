@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AlstefGroupTechnical.BusinessRules.Enums
 {
-    public enum NumberValidationResult
+    public enum NumberValidationResultType
     {
         ValidNumber,
         EmptyOrNullString,
         ContainsUnknownCharacters,
-        OutOfRange
+        NegativeNumber
     }
 }

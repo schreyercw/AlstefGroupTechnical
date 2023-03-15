@@ -1,27 +1,41 @@
-﻿namespace AlstefGroupTechnical.BusinessRules.Services;
+﻿using AlstefGroupTechnical.BusinessRules.Interfaces;
+using AlstefGroupTechnical.BusinessRules.Models;
+
+namespace AlstefGroupTechnical.BusinessRules.Services;
 public class FileService
 {
+    
     private const string FileName = "SavedValue.txt";
+    private readonly IFileSystem _fileSystem;
 
-    public static int GetPreviousValue()
+    public FileService(IFileSystem fileSystem)
     {
-        int previousValue = 0;
+        _fileSystem = fileSystem;
+    }
 
-        if (File.Exists(FileName))
+    public int? GetPreviousValue()
+    {
+        if (!_fileSystem.Exists(FileName))
         {
-            string previousValueString = File.ReadAllText(FileName);
-
-            if (int.TryParse(previousValueString, out previousValue))
-            {
-                Console.WriteLine("Previous value: {0}", previousValue);
-            }
+            return null;
         }
 
+        string previousValueString = _fileSystem.ReadAllText(FileName);
+
+        if (int.TryParse(previousValueString, out var previousValue))
+        {
+            Console.WriteLine("Previous value: {0}", previousValue);
+        }
         return previousValue;
     }
 
-    public static void SaveValueToFile(int value)
+
+    public void SaveValueToFile(int value)
     {
-        File.WriteAllText(FileName, value.ToString());
+        _fileSystem.WriteAllText(FileName, value.ToString());
+    }
+    protected virtual IFileSystem GetFileSystem()
+    {
+        return new FileSystemService();
     }
 }

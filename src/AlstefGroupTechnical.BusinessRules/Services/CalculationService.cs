@@ -1,5 +1,5 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services;
-public class CalculationService
+public static class CalculationService
 {
     public static int GetTotal(int previousValue, int userInput)
     { 
