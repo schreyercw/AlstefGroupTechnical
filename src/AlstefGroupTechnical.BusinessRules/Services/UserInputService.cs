@@ -3,8 +3,6 @@ public static class UserInputService
 {
     public static int GetValidNumberFromUser()
     {
-        int userInput;
-
         while (true)
         {
             Console.Write("Enter a number: ");
@@ -18,7 +16,7 @@ public static class UserInputService
                 continue;
             }
 
-            if (!int.TryParse(input, out userInput))
+            if (!int.TryParse(input, out var userInput))
             {
                 Console.WriteLine("Invalid input. Please enter a valid number.");
                 continue;

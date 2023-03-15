@@ -21,6 +21,7 @@ public static class ValidationExtensions
 
         if (!int.TryParse(input, out int parsedInput))
         {
+            _ = parsedInput;
             return NumberValidationResultType.ContainsUnknownCharacters;
         }
 
