@@ -153,3 +153,33 @@ public void ValidateNumber(string? input, NumberValidationResultType expected)
 }
 ```
 
+## Program.cs:
+```C#
+IFileSystem fileSystem = new FileSystemService();
+FileService fileService = new FileService(fileSystem);
+
+// Get previous value from file if it exists
+int? previousValue = fileService.GetPreviousValue();
+
+// Get new value from user
+int userInput = UserInputService.GetValidNumberFromUser();
+
+// Calculate new total value
+int total = CalculationService.GetTotal(previousValue ?? 0, userInput);
+
+// Save new value to file
+fileService.SaveValueToFile(total);
+```
+
+## Requirements Completed:
+- [x] 1.  Ask the user to enter a number. 
+- [x] 2.  Read the previous number that was written to disk by the program the previous time it ran. 
+- [x] 3.  Add the entered number to the previous number. This will give you a total number. 
+- [x] 4.  If the total number is greater than 152 then subtract 152 from the total number. 
+- [x] 5.  Display the total number to the user. 
+- [x] 6.  Save the total number to disk.
+- [x] 7.  Exit. 
+
+Thank you for the opportunity to work on this project.
+
+Charles Schreyer

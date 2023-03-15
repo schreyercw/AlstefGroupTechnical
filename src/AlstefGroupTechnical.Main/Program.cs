@@ -1,5 +1,4 @@
-﻿
-IFileSystem fileSystem = new FileSystemService();
+﻿IFileSystem fileSystem = new FileSystemService();
 FileService fileService = new FileService(fileSystem);
 
 // Get previous value from file if it exists
@@ -13,3 +12,6 @@ int total = CalculationService.GetTotal(previousValue ?? 0, userInput);
 
 // Save new value to file
 fileService.SaveValueToFile(total);
+
+// Exit
+Environment.Exit(0);
