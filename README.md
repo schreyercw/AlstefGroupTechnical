@@ -37,7 +37,7 @@ Every time the program is run it must do the following:
 
 ------------
 ### Enums:
-- NumberValidationResult:
+- NumberValidationResultType:
 
         1.ValidNumber
         2.EmptyOrNullString
@@ -89,7 +89,7 @@ CalculationService_GetTotal_ValidInput_ReturnsCorrectTotal()
 ```C#
 GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
 {
-    //Testing the correct progression of the test that when it gets a value, it returns the correct value.
+    //Testing the correct progression of the services that when it gets a value, it returns the correct value.
 
     //Inputs: 
     const int inputValue = 5;
