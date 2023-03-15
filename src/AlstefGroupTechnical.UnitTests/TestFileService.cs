@@ -5,7 +5,7 @@ public class FileServiceTests
     [Fact]
     public void GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
     {
-        //Testing the correct progress
+        //Testing the correct progression of the test that when it gets a value, it returns the correct value.
         const int expectedValue = 5;
 
         // Arrange
@@ -34,7 +34,7 @@ public class FileServiceTests
 
         // Act
         var result = fileService.GetPreviousValue();
-        
+
         // Assert
         Assert.Null(result);
     }
