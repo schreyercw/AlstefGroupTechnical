@@ -19,6 +19,8 @@ public class TestCalculationService
     [Fact]
     public void CalculationService_GetTotal_NullInput_Returns0()
     {
+        //Missing No previous value in the file, would result in null.
+
         // Arrange
         int? previousValue = null;
         int userInput = 20;
