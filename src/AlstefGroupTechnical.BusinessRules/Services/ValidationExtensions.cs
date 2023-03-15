@@ -1,5 +1,4 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services;
-
 public static class ValidationExtensions
 {
     //I am assuming the "number" type as an int.

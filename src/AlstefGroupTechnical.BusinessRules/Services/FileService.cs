@@ -1,7 +1,4 @@
-﻿using AlstefGroupTechnical.BusinessRules.Interfaces;
-using AlstefGroupTechnical.BusinessRules.Models;
-
-namespace AlstefGroupTechnical.BusinessRules.Services;
+﻿namespace AlstefGroupTechnical.BusinessRules.Services;
 public class FileService
 {
     
