@@ -1,14 +1,14 @@
 namespace AlstefGroupTechnical.UnitTests;
 public class TestValidationService
 {
-
+    [Fact]
     public void ValidateNumber_ValidNumber_ReturnsValidResult()
     {
         // Arrange
-        string input = "123";
+        var input = "123";
 
         // Act
-        var result = ValidationService.ValidateNumber(input);
+        var result = input.ValidateNumber();
 
         // Assert
         Assert.Equal(NumberValidationResultType.ValidNumber, result);
@@ -17,10 +17,10 @@ public class TestValidationService
     public void ValidateNumber_NullInput_ReturnsInvalidResult()
     {
         // Arrange
-        string input = null;
+        string? input = null;
 
         // Act
-        var result = ValidationService.ValidateNumber(input);
+        var result = ValidationExtensions.ValidateNumber(input);
 
         // Assert
         Assert.Equal(NumberValidationResultType.EmptyOrNullString, result);
@@ -30,65 +30,29 @@ public class TestValidationService
     public void ValidateNumber_EmptyString_ReturnsInvalidResult()
     {
         // Arrange
-        string input = string.Empty;
+        string? input = string.Empty;
 
         // Act
-        var result = ValidationService.ValidateNumber(input);
+        var result = input.ValidateNumber();
 
         // Assert
         Assert.Equal(NumberValidationResultType.EmptyOrNullString, result);
     }
 
-    [Fact]
-    public void ValidateNumber_WhitespaceString_ReturnsInvalidResult()
+
+    [Theory]
+    [InlineData("2147483648", NumberValidationResultType.OutOfRange)]
+    [InlineData("123$#%", NumberValidationResultType.ContainsUnknownCharacters)]
+    [InlineData("abc123", NumberValidationResultType.ContainsUnknownCharacters)]
+    [InlineData("    ", NumberValidationResultType.EmptyOrNullString)]
+    public void ValidateNumber(string? input, NumberValidationResultType expected)
     {
         // Arrange
-        string input = "    ";
 
         // Act
-        var result = ValidationService.ValidateNumber(input);
+        var result = ValidationExtensions.ValidateNumber(input);
 
         // Assert
-        Assert.Equal(NumberValidationResultType.EmptyOrNullString, result);
+        Assert.Equal(expected, result);
     }
-
-    [Fact]
-    public void ValidateNumber_ContainsLetters_ReturnsInvalidResult()
-    {
-        // Arrange
-        string input = "abc123";
-
-        // Act
-        var result = ValidationService.ValidateNumber(input);
-
-        // Assert
-        Assert.Equal(NumberValidationResultType.ContainsUnknownCharacters, result);
-    }
-
-    [Fact]
-    public void ValidateNumber_ContainsSpecialCharacters_ReturnsInvalidResult()
-    {
-        // Arrange
-        string input = "123$#%";
-
-        // Act
-        var result = ValidationService.ValidateNumber(input);
-
-        // Assert
-        Assert.Equal(NumberValidationResultType.ContainsUnknownCharacters, result);
-    }
-
-    [Fact]
-    public void ValidateNumber_OutOfRange_ReturnsInvalidResult()
-    {
-        // Arrange
-        string input = "2147483648"; // int.MaxValue + 1
-
-        // Act
-        var result = ValidationService.ValidateNumber(input);
-
-        // Assert
-        Assert.Equal(NumberValidationResultType.OutOfRange, result);
-    }
-
 }

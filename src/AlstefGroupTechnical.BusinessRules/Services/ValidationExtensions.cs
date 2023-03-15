@@ -1,10 +1,11 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services;
 
-public class ValidationService
+public static class ValidationExtensions
 {
-    //I am assuming the "number" type as an int. This would have been a converstation between us for clarification of the Number type.
+    //I am assuming the "number" type as an int.
+    //This would have been a converstation between us for clarification of the Number type.
 
-    public static NumberValidationResultType ValidateNumber(string input)
+    public static NumberValidationResultType ValidateNumber(this string? input)
     {
         if (string.IsNullOrWhiteSpace(input))
         {
@@ -22,11 +23,6 @@ public class ValidationService
         if (!int.TryParse(input, out int parsedInput))
         {
             return NumberValidationResultType.ContainsUnknownCharacters;
-        }
-
-        if (parsedInput < int.MinValue || parsedInput > int.MaxValue)
-        {
-            return NumberValidationResultType.OutOfRange;
         }
 
         if (parsedInput < int.MinValue || parsedInput > int.MaxValue)

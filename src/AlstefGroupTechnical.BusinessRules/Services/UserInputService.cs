@@ -1,6 +1,6 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services
 {
-    public class UserInputService
+    public static class UserInputService
     {
         public static int GetValidNumberFromUser()
         {
@@ -9,9 +9,9 @@
             while (true)
             {
                 Console.Write("Enter a number: ");
-                string input = Console.ReadLine();
+                var input = Console.ReadLine();
 
-                NumberValidationResultType validationResult = ValidationService.ValidateNumber(input);
+                NumberValidationResultType validationResult = ValidationExtensions.ValidateNumber(input);
 
                 if (validationResult != NumberValidationResultType.ValidNumber)
                 {
