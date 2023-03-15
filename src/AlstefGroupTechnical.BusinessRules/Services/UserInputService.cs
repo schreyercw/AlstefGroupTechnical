@@ -27,4 +27,9 @@ public static class UserInputService
             return userInput;
         }
     }
+
+    public static void DisplayUpdatedTotalToUser(int updatedTotal)
+    {
+        Console.WriteLine($"Total: {updatedTotal}");
+    }
 }

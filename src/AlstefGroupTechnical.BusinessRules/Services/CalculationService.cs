@@ -1,9 +1,9 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services;
 public static class CalculationService
 {
-    public static int GetTotal(int previousValue, int userInput)
+    public static int GetTotal(int? previousValue, int userInput)
     { 
-        int total = previousValue + userInput;
+        int total = (previousValue ?? 0) + userInput;
 
         if (total > 152)
         {

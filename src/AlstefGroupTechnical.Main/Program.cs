@@ -1,17 +1,22 @@
 ﻿IFileSystem fileSystem = new FileSystemService();
-FileService fileService = new FileService(fileSystem);
+IFileService fileService = new FileService(fileSystem);
 
-// Get previous value from file if it exists
-int? previousValue = fileService.GetPreviousValue();
 
-// Get new value from user
+//1. Ask the user to enter a number.
 int userInput = UserInputService.GetValidNumberFromUser();
 
-// Calculate new total value
-int total = CalculationService.GetTotal(previousValue ?? 0, userInput);
+//2. Read the previous number that was written to disk by the program the previous time it ran.
+int? previousValue = fileService.GetPreviousValue();
 
-// Save new value to file
+//3. Add the entered number to the previous number. This will give you a total number.
+//4. If the total number is greater than 152 then subtract 152 from the total number.
+int total = CalculationService.GetTotal(previousValue, userInput);
+
+//5. Display the total number to the user.
+UserInputService.DisplayUpdatedTotalToUser(total);
+
+//6. Save the total number to disk.
 fileService.SaveValueToFile(total);
 
-// Exit
+//7. Exit.
 Environment.Exit(0);

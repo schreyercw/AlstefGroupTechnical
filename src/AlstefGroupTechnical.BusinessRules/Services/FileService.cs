@@ -1,7 +1,7 @@
 ﻿namespace AlstefGroupTechnical.BusinessRules.Services;
-public class FileService
+public class FileService : IFileService
 {
-    
+    //I would prefer this to be in a configuration.
     private const string FileName = "SavedValue.txt";
     private readonly IFileSystem _fileSystem;
 
@@ -26,13 +26,8 @@ public class FileService
         return previousValue;
     }
 
-
     public void SaveValueToFile(int value)
     {
         _fileSystem.WriteAllText(FileName, value.ToString());
-    }
-    protected virtual IFileSystem GetFileSystem()
-    {
-        return new FileSystemService();
     }
 }

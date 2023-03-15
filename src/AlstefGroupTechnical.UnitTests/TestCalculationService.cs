@@ -15,4 +15,19 @@ public class TestCalculationService
         // Assert
         Assert.Equal(expectedTotal, actualTotal);
     }
+
+    [Fact]
+    public void CalculationService_GetTotal_NullInput_Returns0()
+    {
+        // Arrange
+        int? previousValue = null;
+        int userInput = 20;
+        int expectedTotal = 20;
+
+        // Act
+        int actualTotal = CalculationService.GetTotal(previousValue, userInput);
+
+        // Assert
+        Assert.Equal(expectedTotal, actualTotal);
+    }
 }
