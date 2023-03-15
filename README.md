@@ -43,14 +43,7 @@ Every time the program is run it must do the following:
         2.EmptyOrNullString
         3.ContainsUnknownCharacters
         4.NegativeNumber
-### Models:
-- NumberValidationResult
-```C#
-    public bool IsValid => ErrorMessage is not null;
-    public int? ValidatedNumber { get; set; }
-    public string? ErrorMessage { get; set; }
-    public NumberValidationResultType ResultType { get; set; }
-```
+
 ### Interfaces:
 - IFileService
 ```c#
