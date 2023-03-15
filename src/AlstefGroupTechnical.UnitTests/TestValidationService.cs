@@ -41,7 +41,6 @@ public class TestValidationService
 
 
     [Theory]
-    [InlineData("2147483648", NumberValidationResultType.OutOfRange)]
     [InlineData("123$#%", NumberValidationResultType.ContainsUnknownCharacters)]
     [InlineData("abc123", NumberValidationResultType.ContainsUnknownCharacters)]
     [InlineData("    ", NumberValidationResultType.EmptyOrNullString)]

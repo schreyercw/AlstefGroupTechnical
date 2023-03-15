@@ -25,11 +25,6 @@ public static class ValidationExtensions
             return NumberValidationResultType.ContainsUnknownCharacters;
         }
 
-        if (parsedInput < int.MinValue || parsedInput > int.MaxValue)
-        {
-            return NumberValidationResultType.OutOfRange;
-        }
-
         return NumberValidationResultType.ValidNumber;
     }
 

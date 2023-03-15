@@ -11,7 +11,6 @@ namespace AlstefGroupTechnical.BusinessRules.Enums
         ValidNumber,
         EmptyOrNullString,
         ContainsUnknownCharacters,
-        OutOfRange,
         NegativeNumber
     }
 }
