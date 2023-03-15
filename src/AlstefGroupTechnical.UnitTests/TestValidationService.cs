@@ -4,6 +4,7 @@ public class TestValidationService
     [Fact]
     public void ValidateNumber_NullInput_ReturnsInvalidResult()
     {
+        //Calling this will test if a null input returns the correct NumberValidationResultType
         // Arrange
         string? input = null;
 

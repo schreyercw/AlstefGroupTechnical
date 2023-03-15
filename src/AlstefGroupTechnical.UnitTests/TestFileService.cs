@@ -1,17 +1,17 @@
 ﻿namespace AlstefGroupTechnical.UnitTests;
 
-public class FileServiceTests
+public class TestFileService
 {
     [Fact]
     public void GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
     {
         //Testing the correct progression of the test that when it gets a value, it returns the correct value.
-        const int expectedValue = 5;
+        const int inputValue = 5;
 
         // Arrange
         var fileSystemMock = new Mock<IFileSystem>();
         fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(true);
-        fileSystemMock.Setup(fs => fs.ReadAllText(It.IsAny<string>())).Returns(expectedValue.ToString());
+        fileSystemMock.Setup(fs => fs.ReadAllText(It.IsAny<string>())).Returns(inputValue.ToString());
 
         var fileService = new FileService(fileSystemMock.Object);
 
@@ -19,7 +19,7 @@ public class FileServiceTests
         var result = fileService.GetPreviousValue();
 
         // Assert
-        Assert.Equal(expectedValue, result);
+        Assert.Equal(inputValue, result);
     }
 
     [Fact]
