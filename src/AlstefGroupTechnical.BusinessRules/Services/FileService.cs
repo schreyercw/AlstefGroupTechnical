@@ -13,11 +13,11 @@ public class FileService
         _fileSystem = fileSystem;
     }
 
-    public int GetPreviousValue()
+    public int? GetPreviousValue()
     {
         if (!_fileSystem.Exists(FileName))
         {
-            return 0;
+            return null;
         }
 
         string previousValueString = _fileSystem.ReadAllText(FileName);
@@ -29,12 +29,13 @@ public class FileService
         return previousValue;
     }
 
+
     public void SaveValueToFile(int value)
     {
         _fileSystem.WriteAllText(FileName, value.ToString());
     }
     protected virtual IFileSystem GetFileSystem()
     {
-        return new FileSystem();
+        return new FileSystemService();
     }
 }

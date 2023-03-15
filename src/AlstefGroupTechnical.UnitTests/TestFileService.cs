@@ -1,80 +1,56 @@
-﻿using AlstefGroupTechnical.BusinessRules.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AlstefGroupTechnical.UnitTests;
 
-namespace AlstefGroupTechnical.UnitTests
+public class FileServiceTests
 {
-    public class FileServiceTests
+    [Fact]
+    public void GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
     {
+        const int expectedValue = 5;
 
-        [Fact]
-        public void GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
-        {
-            const int expectedValue = 5;
+        // Arrange
+        var fileSystemMock = new Mock<IFileSystem>();
+        fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(true);
+        fileSystemMock.Setup(fs => fs.ReadAllText(It.IsAny<string>())).Returns(expectedValue.ToString());
 
-            // Arrange
-            var fileSystemMock = new Mock<IFileSystem>();
-            fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(true);
-            fileSystemMock.Setup(fs => fs.ReadAllText(It.IsAny<string>())).Returns(expectedValue.ToString());
+        var fileService = new FileService(fileSystemMock.Object);
 
-            var fileService = new TestableFileService(fileSystemMock.Object);
+        // Act
+        var result = fileService.GetPreviousValue();
 
-            // Act
-            var result = fileService.GetPreviousValue();
+        // Assert
+        Assert.Equal(expectedValue, result);
+    }
 
-            // Assert
-            Assert.Equal(expectedValue, result);
-        }
+    [Fact]
+    public void GetPreviousValue_WhenSavedValueDoesNotExist_ReturnsNull()
+    {
+        // Arrange
+        var fileSystemMock = new Mock<IFileSystem>();
+        fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(false);
 
-        [Fact]
-        public void GetPreviousValue_WhenSavedValueDoesNotExist_ReturnsZero()
-        {
-            // Arrange
-            var fileSystemMock = new Mock<IFileSystem>();
-            fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(false);
+        var fileService = new FileService(fileSystemMock.Object);
 
-            var fileService = new TestableFileService(fileSystemMock.Object);
+        // Act
+        var result = fileService.GetPreviousValue();
+        
+        // Assert
+        Assert.Null(result);
+    }
 
-            // Act
-            var result = fileService.GetPreviousValue();
+    [Fact]
+    public void SaveValueToFile_CallsWriteAllText()
+    {
+        //When I call the WriteAllText Method it calls correctly from IFileSystem
+        const int inputValue = 5;
 
-            // Assert
-            Assert.Equal(0, result);
-        }
+        // Arrange
+        var fileSystemMock = new Mock<IFileSystem>();
+        var fileService = new FileService(fileSystemMock.Object);
 
-        [Fact]
-        public void SaveValueToFile_WritesValueToFile()
-        {
-            const int expectedValue = 5;
+        // Act
+        fileService.SaveValueToFile(inputValue);
 
-            // Arrange
-            var fileSystemMock = new Mock<IFileSystem>();
-            var fileService = new TestableFileService(fileSystemMock.Object);
-
-            // Act
-            fileService.SaveValueToFile(expectedValue);
-
-            // Assert
-            fileSystemMock.Verify(fs => fs.WriteAllText(It.IsAny<string>(), expectedValue.ToString()), Times.Once);
-        }
-
-        private class TestableFileService : FileService
-        {
-            private readonly IFileSystem _fileSystem;
-
-            public TestableFileService(IFileSystem fileSystem)
-                : base(fileSystem)
-            {
-                _fileSystem = fileSystem;
-            }
-
-            protected override IFileSystem GetFileSystem()
-            {
-                return _fileSystem;
-            }
-        }
+        // Assert
+        fileSystemMock.Verify(fs => fs.WriteAllText(It.IsAny<string>(), inputValue.ToString()), Times.Once);
     }
 }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlstefGroupTechnical.BusinessRules.Models
+namespace AlstefGroupTechnical.BusinessRules.Services
 {
-    public class FileSystem : IFileSystem
+    public class FileSystemService : IFileSystem
     {
-        public FileSystem()
+        public FileSystemService()
         {
 
         }
@@ -29,7 +29,7 @@ namespace AlstefGroupTechnical.BusinessRules.Models
         }
         public virtual IFileSystem GetFileSystem()
         {
-            return new FileSystem();
+            return new FileSystemService();
         }
     }
 }

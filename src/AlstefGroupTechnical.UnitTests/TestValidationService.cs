@@ -2,18 +2,6 @@ namespace AlstefGroupTechnical.UnitTests;
 public class TestValidationService
 {
     [Fact]
-    public void ValidateNumber_ValidNumber_ReturnsValidResult()
-    {
-        // Arrange
-        var input = "123";
-
-        // Act
-        var result = input.ValidateNumber();
-
-        // Assert
-        Assert.Equal(NumberValidationResultType.ValidNumber, result);
-    }
-    [Fact]
     public void ValidateNumber_NullInput_ReturnsInvalidResult()
     {
         // Arrange
@@ -44,6 +32,7 @@ public class TestValidationService
     [InlineData("123$#%", NumberValidationResultType.ContainsUnknownCharacters)]
     [InlineData("abc123", NumberValidationResultType.ContainsUnknownCharacters)]
     [InlineData("    ", NumberValidationResultType.EmptyOrNullString)]
+    [InlineData("123", NumberValidationResultType.ValidNumber)]
     public void ValidateNumber(string? input, NumberValidationResultType expected)
     {
         // Arrange
