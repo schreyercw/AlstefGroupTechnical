@@ -5,6 +5,7 @@ public class FileServiceTests
     [Fact]
     public void GetPreviousValue_WhenSavedValueExists_ReturnsSavedValue()
     {
+        //Testing the correct progress
         const int expectedValue = 5;
 
         // Arrange
@@ -24,6 +25,7 @@ public class FileServiceTests
     [Fact]
     public void GetPreviousValue_WhenSavedValueDoesNotExist_ReturnsNull()
     {
+        //Calling this Test will test the Exists and GetPreviousValue Methods and if it returns Null.
         // Arrange
         var fileSystemMock = new Mock<IFileSystem>();
         fileSystemMock.Setup(fs => fs.Exists(It.IsAny<string>())).Returns(false);
@@ -40,7 +42,7 @@ public class FileServiceTests
     [Fact]
     public void SaveValueToFile_CallsWriteAllText()
     {
-        //When I call the WriteAllText Method it calls correctly from IFileSystem
+        //Calling this Test will test the WriteAllText Method and if it calls correctly from IFileSystem.
         const int inputValue = 5;
 
         // Arrange
