@@ -180,6 +180,9 @@ fileService.SaveValueToFile(total);
 - [x] 6.  Save the total number to disk.
 - [x] 7.  Exit. 
 
+### Additional Notes:
+The project took approximately `12 hours` to do.
+
 Thank you for the opportunity to work on this project.
 
 Charles Schreyer
